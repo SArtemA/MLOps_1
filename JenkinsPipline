@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/SArtemA/MLOps_1.git'
+            }
+        }
+        
+        stage('Requirements'){
+            steps {
+                sh "pip install -r requirements.txt"
+            }   
+        }
+        
+        stage('Get Data'){
+            steps {
+                sh "python3 data_creation.py"
+            }   
+        }
+        
+        stage('Data Preproccessing'){
+            steps {
+                dir('lab2'){
+                    sh "python3 model_preprocessing.py"
+                }
+            }   
+        }
+        
+        stage('Training Model'){
+            steps {
+                sh "python3 model_preparation.py"
+            }   
+        }
+        
+        stage('Testing Model'){
+            steps{ 
+                sh "python3 model_testing.py"
+            }   
+        }
+    }
+}
