@@ -17,7 +17,7 @@ from detectron2.data import MetadataCatalog, DatasetCatalog
 from detectron2.engine import DefaultTrainer
 
 
-EPOCHS = 5000
+EPOCHS = 500
 NUM_CLASSES = 6
 BASE_LR = 0.0001
 
